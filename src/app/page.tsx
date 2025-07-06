@@ -14,8 +14,15 @@ const categoryIcons: Record<string, string> = {
 };
 
 export default async function Home() {
-  const res = await fetch(`http://localhost:3000/api/categories`);
-  const categories: string[] = await res.json();
+  let categories: string[];
+
+  try {
+    const res = await fetch("http://localhost:3000/api/categories");
+    if (!res.ok) throw new Error(`Failed to load categories (${res.status})`);
+    categories = await res.json();
+  } catch (err: any) {
+    throw new Error("Error loading categories: " + err.message);
+  }
 
   return (
     <>
