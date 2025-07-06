@@ -1,8 +1,10 @@
-import { Quiz, quizzes } from "@/data/quizzes";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
+import { quizzes } from "@/data/quizzes";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<Quiz[]>) {
-  const { cat } = req.query;
-  const list = quizzes.filter((q) => q.category === cat);
-  res.status(200).json(list);
+export async function GET(
+  _: Request,
+  { params }: { params: { category: string } }
+) {
+  const list = quizzes.filter((q) => q.category === params.category);
+  return NextResponse.json(list);
 }
