@@ -6,15 +6,30 @@ export const metadata: Metadata = {
   description: "Choose a quiz category",
 };
 
+const categoryIcons: Record<string, string> = {
+  History: "/history.svg",
+  Science: "/science.svg",
+  Math: "/math.svg",
+  Programming: "/programming.svg",
+};
+
 export default async function Home() {
   const res = await fetch(`http://localhost:3000/api/categories`);
   const categories: string[] = await res.json();
 
   return (
-    <main className="p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {categories.map((c) => (
-        <CategoryCard key={c} name={c} />
-      ))}
-    </main>
+    <>
+      <header className="bg-gray-100 p-4 text-center">
+        <h1 className="text-2xl font-bold">Welcome to Micro-Quiz</h1>
+        <p className="mt-2 text-gray-600">Choose a quiz category to get started.</p>
+      </header>
+      
+      <main className="p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <h1 className="col-span-full text-2xl font-bold">Quiz Categories</h1>
+        {categories.map((c) => (
+          <CategoryCard key={c} name={c} icon={categoryIcons[c] || "/default.svg"} />
+        ))}
+      </main>
+    </>
   );
 }
