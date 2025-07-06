@@ -27,12 +27,12 @@ export default async function Home() {
   return (
     <>
       <header className="bg-gray-100 p-4 text-center">
-        <h1 className="text-2xl font-bold">Welcome to Micro-Quiz</h1>
-        <p className="mt-2 text-gray-600">Choose a quiz category to get started.</p>
+        <h1 className="text-lg sm:text-2xl font-bold">Welcome to Micro-Quiz</h1>
+        <p className="mt-2 text-gray-600 text-sm sm:text-base">Choose a quiz category to get started.</p>
       </header>
       
-      <main className="p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <h1 className="col-span-full text-2xl font-bold">Quiz Categories</h1>
+      <main className="p-4 sm:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <h1 className="col-span-full text-lg sm:text-2xl font-bold">Quiz Categories</h1>
         {categories.map((c) => (
           <CategoryCard key={c} name={c} icon={categoryIcons[c] || "/default.svg"} />
         ))}

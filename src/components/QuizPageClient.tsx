@@ -53,7 +53,7 @@ export default function QuizPageClient({ quiz }: { quiz: QuizType }) {
   // If finished, just show the score
   if (finished) {
     return (
-      <div className="p-8 max-w-xl mx-auto text-center space-y-4">
+      <div className="p-4 sm:p-8 max-w-xl mx-auto text-center space-y-4">
         <p className="text-2xl font-bold">Quiz Complete!</p>
         <p className="text-xl">
           You scored {score} / {total}
@@ -63,8 +63,8 @@ export default function QuizPageClient({ quiz }: { quiz: QuizType }) {
   }
 
   return (
-    <div className="p-8 max-w-xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold">{quiz.title}</h1>
+    <div className="p-4 sm:p-8 max-w-xl mx-auto space-y-4 sm:space-y-6">
+      <h1 className="text-xl sm:text-2xl font-bold">{quiz.title}</h1>
 
       <Question
         text={currentQ.text}
@@ -76,7 +76,7 @@ export default function QuizPageClient({ quiz }: { quiz: QuizType }) {
 
       {/* feedback */}
       {submitted[index] && (
-        <p className="mt-2 font-medium">
+        <p className="mt-2 text-base sm:text-lg font-medium text-center">
           {selectedAnswers[index] === currentQ.correct
             ? "✅ Correct!"
             : "❌ Incorrect."}
@@ -87,18 +87,18 @@ export default function QuizPageClient({ quiz }: { quiz: QuizType }) {
       <div className="flex justify-between mt-4 items-center">
         <button
           onClick={goPrev}
-          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+          className="px-3 py-1 sm:px-4 sm:py-2 bg-gray-300 rounded disabled:opacity-50"
           disabled={index === 0}
         >
           Previous
         </button>
 
-        <p>Question {index + 1} / {total}</p>
+        <p className="text-sm sm:text-lg">Question {index + 1} / {total}</p>
 
         {index + 1 < total ? (
           <button
             onClick={goNext}
-            className="px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50 cursor-pointer"
+            className="px-3 py-1 sm:px-4 sm:py-2 bg-green-600 text-white rounded disabled:opacity-50 cursor-pointer"
             disabled={!submitted[index]}
           >
             Next

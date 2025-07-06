@@ -25,14 +25,15 @@ export function Question({
 
   return (
     <div className="space-y-4">
-      <p className="font-semibold">{text}</p>
+      <p className="font-semibold text-base sm:text-lg">{text}</p>
       <div className="space-y-2">
         {options.map((o) => (
-          <label key={o.id} className="flex items-center space-x-2">
+          <label key={o.id} className="flex items-center space-x-2 text-sm sm:text-base">
             <input
               type="radio"
               name="option"
               value={o.id}
+              className="h-4 w-4 sm:h-5 sm:w-5"
               checked={selected === o.id}
               onChange={() => !disabled && setSelected(o.id)}
               disabled={disabled}
@@ -43,7 +44,7 @@ export function Question({
       </div>
       <button
         onClick={() => selected && onSubmit(selected)}
-        className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50 cursor-pointer"
+        className="px-3 py-1 sm:px-4 sm:py-2 w-full sm:w-auto bg-blue-600 text-white rounded disabled:opacity-50 cursor-pointer"
         disabled={!selected || disabled}
       >
         Submit
