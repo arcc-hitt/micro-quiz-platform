@@ -1,22 +1,34 @@
 import { QuizCard } from "@/components/QuizCard";
+import { Quiz } from "@/data/quizzes";
 import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export async function generateMetadata({ params }: { params: { category: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}): Promise<Metadata> {
+  const { category } = await params;
   return {
-    title: `${params.category} Quizzes`,
-    description: `All ${params.category} quizzes`,
+    title: `${category} Quizzes`,
+    description: `All ${category} quizzes`,
   };
 }
 
-export default async function CategoryPage({ params }: { params: { category: string } }) {
-  const { category } = params;
-  const res = await fetch(`http://localhost:3000/api/quizzes/${encodeURIComponent(category)}`, {
-    cache: "no-store",  // no-store + dynamic = SSR
-  });
-  const quizzes = await res.json();
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const { category } = await params;
+
+  const res = await fetch(
+    `http://localhost:3000/api/quizzes/${encodeURIComponent(category)}`,
+    { cache: "no-store" }
+  );
+  const quizzes: Quiz[] = await res.json();
 
   return (
     <main className="p-8">

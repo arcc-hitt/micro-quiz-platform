@@ -3,11 +3,12 @@ import { quizzes } from "@/data/quizzes";
 
 export async function GET(
   _: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const quiz = quizzes.find((q) => q.id === params.id);
+  const { id } = await params;
+  const quiz = quizzes.find((q) => q.id === id);
   if (!quiz) {
-    return NextResponse.json({ error: "Quiz Not found" }, { status: 404 });
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
   return NextResponse.json(quiz);
 }
