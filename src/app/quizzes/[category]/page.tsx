@@ -24,11 +24,17 @@ export default async function CategoryPage({
 }) {
   const { category } = await params;
 
-  const res = await fetch(
-    `http://localhost:3000/api/quizzes/${encodeURIComponent(category)}`,
-    { cache: "no-store" }
-  );
-  const quizzes: Quiz[] = await res.json();
+  let quizzes: Quiz[];
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/quizzes/${encodeURIComponent(category)}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) throw new Error(`Status ${res.status}`);
+    quizzes = await res.json();
+  } catch (err: any) {
+    throw new Error("Error loading quizzes: " + err.message);
+  }
 
   return (
     <main className="p-8">
