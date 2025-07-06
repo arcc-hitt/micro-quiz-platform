@@ -33,7 +33,7 @@ export default async function CategoryPage({
   return (
     <main className="p-8">
       <h1 className="text-2xl font-bold mb-4">{category} Quizzes</h1>
-      <div className="space-y-4">
+      <div className="flex flex-col space-y-4">
         {quizzes.map((q: any) => (
           <QuizCard key={q.id} id={q.id} title={q.title} />
         ))}
