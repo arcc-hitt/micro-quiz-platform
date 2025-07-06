@@ -13,6 +13,7 @@ A simple, modern web app built with **Next.js (App Router)**, **TypeScript**, an
 * View final score after completing the quiz
 * Fully responsive UI
 * Loading + error handling on every page
+* Unit and Functional Testing with Jest and Cypress
 
 ---
 
@@ -53,6 +54,44 @@ pnpm dev
 Visit [http://localhost:3000](http://localhost:3000)
 
 ---
+
+## 🧪 Testing
+
+### ✅ Unit Testing
+
+* Framework: **Jest** + **React Testing Library**
+* Tests cover:
+
+  * CategoryCard, QuizCard, Question, and QuizPageClient components
+  * User interactions: selecting options, submitting, navigating between questions
+* Configured with `ts-jest`, `jest-environment-jsdom`, and `@testing-library/*`
+
+To run:
+
+```bash
+npm run test
+```
+
+### ✅ Functional Testing (End-to-End)
+
+* Framework: **Cypress**
+* Tests simulate the full user flow:
+
+  * Navigating to homepage
+  * Selecting a category & quiz
+  * Taking the quiz and submitting answers
+  * Viewing feedback and final score
+
+To run:
+
+```bash
+npm run cypress:open
+# or headless
+npm run cypress:run
+```
+
+---
+
 
 ## 💡 Next.js-Specific Implementations
 
@@ -103,12 +142,20 @@ Visit [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🤖 AI Tooling (Optional Insight)
+## 🤖 AI Tooling
 
-I used **ChatGPT (GPT-4)** for:
+* **ChatGPT (GPT-4)**: Generating Mock Data, debugging tricky state transitions, and assisted in setting up Jest + Cypress
 
-* Structuring data-fetching strategies in the App Router
-* Resolving fetch + dynamic param bugs
-* Suggesting clean UI state management for quiz navigation
+* **Cursor**: Used for in-editor context-aware code completions.
+
+---
+
+## 📌 Possible Enhancements
+
+* Add timer-based quizzes
+* User authentication for personalized results
+* Store results in localStorage or DB
+* Quiz creation dashboard for admins
+* Add Navbar
 
 ---
